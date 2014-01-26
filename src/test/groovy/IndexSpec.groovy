@@ -10,7 +10,7 @@ class IndexSpec extends GebSpec {
         when:
             $("a").click()
         then:
-            at HelpPage
+        at CreateOrderPage
     }
 }
 
