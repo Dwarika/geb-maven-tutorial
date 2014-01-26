@@ -10,7 +10,7 @@ Given(~"I'm at the index page") { ->
     at IndexPage
 }
 When(~"I click 'Create Order'") { ->
-    $("a").click()
+    page.clickCreateOrder()
 }
 Then(~"I see the create order page") { ->
     at CreateOrderPage
