@@ -7,8 +7,7 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
-        <geb.version>0.9.2</geb.version>
-        <selenium.version>2.36.0</selenium.version>
+        <selenium.version>2.37.1</selenium.version>
         <cucumber.version>1.1.5</cucumber.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -17,21 +16,6 @@
     <build>
         <finalName>test-webapp</finalName>
         <plugins>
-            <plugin>
-                <groupId>org.codehaus.gmaven</groupId>
-                <artifactId>gmaven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generateTestStubs</goal>
-                            <goal>testCompile</goal>
-                        </goals>
-                        <configuration>
-                            <providerSelection>1.8</providerSelection>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.codehaus.cargo</groupId>
                 <artifactId>cargo-maven2-plugin</artifactId>
@@ -56,12 +40,10 @@
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
-                    <systemProperties>
-                        <systemProperty>
-                            <key>geb.env</key>
-                            <value>localhost</value>
-                        </systemProperty>
-                    </systemProperties>
+                    <systemPropertyVariables>
+                        <browser>htmlunit</browser>
+                        <selenide.baseUrl>http://localhost:8080/test-webapp</selenide.baseUrl>
+                    </systemPropertyVariables>
                 </configuration>
                 <executions>
                     <execution>
@@ -77,15 +59,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>1.8.6</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.gebish</groupId>
-            <artifactId>geb-core</artifactId>
-            <version>${geb.version}</version>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>2.7</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -102,7 +78,7 @@
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
-            <artifactId>cucumber-groovy</artifactId>
+            <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
