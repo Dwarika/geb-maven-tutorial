@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class IndexPage {
 
     public IndexPage() {
-        $("h2").shouldBe(text("Hello World!"));
+        $("h2").shouldHave(text("Hello World!"));
     }
 
     public void clickCreateOrder() {
